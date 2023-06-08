@@ -23,10 +23,15 @@ public class CollactableItemBase : MonoBehaviour
             Collect();
         }
     }
-    protected virtual void Collect()
+
+    protected virtual void HideItems()
     {
         if (graphicItem != null) graphicItem.SetActive(false);
         Invoke("HideObject", timeToHide);
+    }
+    protected virtual void Collect()
+    {
+        HideItems();
         OnCollect();
     }
 

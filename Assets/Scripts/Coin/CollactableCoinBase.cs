@@ -4,29 +4,37 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public enum ItemType
-{
-    COIN,
-    POTION
-}
 public class CollactableCoinBase : CollactableItemBase
 {
-    [SerializeField] private ItemType itemType;
-
     public Collider collider;
+    public bool collect = false;
+    public float lerp = 5f;
+    public float minDistance = 1f;
 
     protected override void OnCollect()
     {
         base.OnCollect();
-        if (itemType == ItemType.COIN)
-        {
-            ManagerItem.Instance.AddCoins();
-        }
-        else if (itemType == ItemType.POTION)
-        {
-            ManagerItem.Instance.AddPotions();
-        }
-
         collider.enabled = false;
+        collect = true;
+    }
+
+    protected override void Collect()
+    {
+        OnCollect();
+    }
+
+    private void Update()
+    {
+        if(collect)
+        {
+            transform.position = Vector3.Lerp(transform.position, PlayerController.Instance.transform.position, lerp * Time.deltaTime);
+
+            if (Vector3.Distance(transform.position, PlayerController.Instance.transform.position) < minDistance)
+            {
+                HideItems();
+                Destroy(gameObject);
+            }
+           
+        }
     }
 }
