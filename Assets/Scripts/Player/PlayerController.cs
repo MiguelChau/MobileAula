@@ -83,7 +83,7 @@ public class PlayerController : Singleton<PlayerController>
     {
         _canRun = false;
         endScreen.SetActive(true);
-        animatorManager.Play(AnimatorManager.AnimationType.IDLE);
+        animatorManager.Play(animationType);
     }
 
     public void StartToRun()
