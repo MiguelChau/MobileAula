@@ -113,16 +113,16 @@ public class LevelManager : MonoBehaviour
         _spawnedPieces.Clear();
     }
 
-   /*IEnumerator CreateLevelPiecesCoroutine()
+   IEnumerator CreateLevelPiecesCoroutine()
     {
         _spawnedPieces = new List<LevelPieceBase>();
 
-        for (int i = 0; i < piecesNumber; i++)
+        for (int i = 0; i < _currSetup.piecesNumber; i++)
         {
-            CreateLevelPiece(levelPieces);
+            CreateLevelPiece(_currSetup.levelPieces);
             yield return new WaitForSeconds(timeBetweenPieces);
         }
-    }*/
+    }
     #endregion
 
 
