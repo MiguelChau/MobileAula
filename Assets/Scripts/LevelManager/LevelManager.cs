@@ -18,7 +18,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private List<LevelPieceBase> _spawnedPieces = new List<LevelPieceBase>();
     private LevelPieceBaseSetup _currSetup;
 
-    private void Awake()
+    private void Start()
     {
         //SpawnNextLevel();
         CreateLevelPieces();
@@ -78,7 +78,9 @@ public class LevelManager : MonoBehaviour
         {
             CreateLevelPiece(_currSetup.levelPiecesEnd);
         }
-            //StartCoroutine(CreateLevelPiecesCoroutine());
+
+        ColorManager.Instance.ChangeColorByType(_currSetup.artType);
+            
         }
     private void CreateLevelPiece(List<LevelPieceBase> list)
     {
