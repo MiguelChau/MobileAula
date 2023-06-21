@@ -35,10 +35,17 @@ public class PlayerController : Singleton<PlayerController>
     private Vector3 _startPosition;
     private float _baseSpeedToAnimation = 7;
 
+    [SerializeField] private BounceHelper _bounceHelper;
+
     private void Start()
     {
         _startPosition = transform.position;
         ResetSpeed();
+    }
+
+    public void Bounce()
+    {
+        _bounceHelper.Bounce();
     }
 
     public void Update()
